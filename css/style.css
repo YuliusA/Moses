@@ -55,9 +55,9 @@ body {
 	-webkit-transition: background-color .5s ease-in;
 	transition: background-color .5s ease-in;
 }
-/*.col-grid {
-	display: none;
-}*/
+.overflow-hidden{
+	overflow: hidden!important;
+}
 /*
  * Theming the page
  */
@@ -114,6 +114,12 @@ body.theme-bluegrey,
 	background-color: #435a6b;
 	color: #fff;
 }
+body.theme-navy,
+.theme-navy .nav-menu .nav-link:hover,
+.theme-navy .menu-opened .menu-toggle .bar {
+	background-color: #272b34;
+	color: #fff;
+}
 @media (min-width: 992px) {
 	.theme-orange .menu-toggle .bar,
 	.theme-orange .menu-opened .menu-toggle .bar,
@@ -130,7 +136,9 @@ body.theme-bluegrey,
 	.theme-brown .menu-toggle .bar,
 	.theme-brown .menu-opened .menu-toggle .bar,
 	.theme-bluegrey .menu-toggle .bar,
-	.theme-bluegrey .menu-opened .menu-toggle .bar {
+	.theme-bluegrey .menu-opened .menu-toggle .bar,
+	.theme-navy .menu-toggle .bar,
+	.theme-navy .menu-opened .menu-toggle .bar {
 		background-color: #fff;
 	}
 }
@@ -157,6 +165,9 @@ body.theme-bluegrey,
 }
 .theme-bluegrey .nav-menu .nav-link {
 	color: #435a6b;
+}
+.theme-navy .nav-menu .nav-link {
+	color: #272b34;
 }
 .zi-1 {
 	z-index: 1;
@@ -221,7 +232,7 @@ body.theme-bluegrey,
 	height: 48px;
 	left: 50%;
 	margin-left: -15px;
-	opacity: 0.5;
+	opacity: 1;
 	position: fixed;
 	-webkit-transition: all 0.25s ease;
 	transition: all 0.25s ease;
@@ -410,6 +421,7 @@ body.theme-bluegrey,
  * Main Navigation
  */
 .main-nav {
+	cursor: pointer;
 	left: 0;
 	padding: 10% 20px 20px;
 	top: 0;
@@ -499,6 +511,7 @@ body.theme-bluegrey,
 	width: 100%;
 }
 .nav-menu-inner {
+	cursor: default;
 	height: 100%;
 	padding: .5em;
 }
@@ -530,6 +543,9 @@ body.theme-bluegrey,
 	padding: .15em .5em;
 	-webkit-transition: .3s all ease;
 	transition: .3s all ease;
+}
+.nav-menu .nav-item.current .nav-link {
+	cursor: default;
 }
 @media (min-width: 360px) {
 	.nav-menu .nav-item {
@@ -605,11 +621,6 @@ body.theme-bluegrey,
 	height: 100%;
 	max-height: 80vh;
 }
-/*@media (min-width: 1920px) {
-	.hero-col {
-		max-height: ;
-	}
-}*/
 .clip {
 	display: block;
 	opacity: 0;
@@ -624,11 +635,11 @@ body.theme-bluegrey,
 	opacity: 1;
 }
 .brain-clip {
-	left: 50%;
+	left: 10%;
 	text-align: center;
-	top: 50%;
-	-webkit-transform: translate3d(-50%, -100%, 0);
-	transform: translate3d(-50%, -100%, 0);
+	top: 25%;
+//-webkit-transform: translate3d(0, -100%, 0);
+//transform: translate3d(0, -100%, 0);
 	width: 80%;
 	z-index: 0;
 }
@@ -703,74 +714,52 @@ body.theme-bluegrey,
  * Graphene Clip
  */
 .gr-hero-01 {
-	left: -20%;
-	right: 50%;
-	top: -13%;
+
 }
 .gr-hero-02 {
-	left: -10%;
-	right: -10%;
-	top: 50%;
-	-webkit-transform: translate3d(0, -50%, 0);
-	transform: translate3d(0, -50%, 0);
-}
-.gr-hero-03 {
-	max-width: 60%;
-	right: -10%;
-	top: -13%;
-	transform-origin: top right;
+	top: 20%;
+	width:100%;
+	z-index: 0;
 }
 
 @media (min-width: 576px) and (max-width: 767px) and (orientation: landscape) {
 	.gr-hero-01 {
-		right: 70%;
+
 	}
 	.gr-hero-02 {
-		left: -3%;
-		right: -3%;
 		top: 55%;
-	}
-	.gr-hero-03 {
-		max-width: 32%;
-		right: 0;
 	}
 }
 @media (min-width: 768px) {
 	.gr-hero-01 {
-		left: 0;
-		max-width: 60%;
-		right: auto;
+
+	}
+	.gr-hero-02 {
+
 	}
 }
 @media (min-width: 992px) {
 	.gr-hero-01 {
-		max-width: none;
+
 	}
 	.gr-hero-02 {
-		left: 50%;
-		right: -16%;
-		-webkit-transform: translate3d(-50%, -50%, 0);
-		transform: translate3d(-50%, -50%, 0);
-	}
-	.gr-hero-03 {
-		right: 15%;
+		left: 22%;
 	}
 }
 @media (min-width: 992px) and (max-width: 1200px) and (orientation: landscape) {
 	.gr-hero-01 {
-		max-width: 45%;
+
 	}
 	.gr-hero-02 {
-		right: -35%;
-	}
-	.gr-hero-03 {
-		max-width: 258px;
+
 	}
 }
 @media (min-width: 1200px) {
+	.gr-hero-01 {
+
+	}
 	.gr-hero-02 {
-		top: 55%;
-		width: 82%;
+		width: 55%;
 	}
 	.gr-hero-02 > img {
 		width: 100%;
@@ -778,11 +767,9 @@ body.theme-bluegrey,
 }
 @media (min-width: 2199px) {
 	.gr-hero-02 {
-		top: 50%;
+
 	}
-	.gr-hero-03 {
-		top: 8%;
-	}
+
 }
 
 /*
@@ -966,7 +953,6 @@ body.theme-bluegrey,
 	right: -17%;
 }
 .wd-card-purple-sm {
-	/*bottom: 42%;*/
 	left: -12%;
 	max-width: 14%;
 	right: auto;
@@ -1007,7 +993,6 @@ body.theme-bluegrey,
 }
 @media (min-width: 768px) {
 	.wd-card-lightblue-xs {
-		/*bottom: 73%;*/
 		max-width: 18%;
 		right: 64%;
 	}
@@ -1029,29 +1014,24 @@ body.theme-bluegrey,
 }
 @media (min-width: 992px) {
 	.wd-card-lightblue-xs {
-		/*bottom: 68%;*/
 		max-width: 15%;
 		right: 60%;
 	}
 	.wd-card-purple-sm {
-		/*bottom: 18%;*/
 		left: auto;
 		max-width: 12%;
 		right: 86%;
 		top: 46%;
 	}
 	.wd-card-darkgray {
-		/*bottom: 18%;*/
 		max-width: 22%;
 		right: 60%;
 	}
 	.wd-card-lightbrown {
-		/*bottom: 58%;*/
 		left: 59%;
 		right: auto;
 	}
 	.wd-card-wooden {
-		/*bottom: 58%;*/
 		left: 44%;
 	}
 	.wd-card-green {
@@ -1070,23 +1050,7 @@ body.theme-bluegrey,
 	.wd-card-lightbrown {
 		left: 62%;
 	}
-	/*.wd-card-purple-sm {
-		right: 89%;
-	}*/
-	/*.wd-card-darkgray {
-		max-width: 25%;
-	}*/
 }
-
-/*
-@media (min-width: 1400px) {
-	.wd-card-lightblue-xs {
-		bottom: 65%;
-	}
-	.wd-card-purple-sm {
-		right: 87%;
-	}
-}*/
 
 /*
  * Adidas Clip
@@ -1136,7 +1100,7 @@ body.theme-bluegrey,
 	}
 	.ad-hero-01 {
 		left: -10%;
-        max-width: 55%;
+		max-width: 55%;
 	}
 	.ad-hero-02 {
 		right: -30%;
@@ -1304,7 +1268,7 @@ body.theme-bluegrey,
 .fluid-banner {
 	margin-top: -5.5rem;
 }
-.fluid-banner > img {
+.fluid-banner img {
 	margin-bottom: 1.5rem;
 }
 .starbucks-content .section-website .project-caption {
@@ -1374,7 +1338,7 @@ body.theme-bluegrey,
 	.em-print-02 {
 		margin-top: -70%;
 	}
-	.fluid-banner > img {
+	.fluid-banner img {
 		max-width: 960px;
 	}
 	.em-webbanner {
@@ -1401,7 +1365,7 @@ body.theme-bluegrey,
 	}
 }
 @media (min-width: 1200px) {
-	.fluid-banner > img {
+	.fluid-banner img {
 		max-width: 1140px;
 	}
 	.project-details p,
@@ -1410,7 +1374,7 @@ body.theme-bluegrey,
 	}
 }
 @media (min-width: 1330px) {
-	.fluid-banner > img {
+	.fluid-banner img {
 		max-width: 1300px;
 	}
 }
@@ -1516,6 +1480,7 @@ body.theme-bluegrey,
  */
 .graphene-content .section-container .fluid-banner {
 	margin-top: -2.2rem;
+	text-align: center;
 }
 .graphene-content .right-desc {
 	margin-top: -1.5rem;
