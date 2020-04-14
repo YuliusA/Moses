@@ -10,7 +10,7 @@
         firstLoad		= false;
 
     var mosClick        = 'mosclick',
-        mPages = ['index','experience','graphene','emirates','wunderman','starbucks','adidas','monalisa'];
+        mPages = ['index','experience','wsp','graphene','emirates','wunderman','starbucks','adidas','monalisa'];
     var pages = {
         index: {
             path: 'index.html',
@@ -21,6 +21,11 @@
             path: 'experience.html',
             title: 'Moses Has 9 years Experience',
             color: 'bluegrey'
+        },
+        wsp: {
+            path: 'wsp.html',
+            title: 'Moses Designed WSP Future Cities',
+            color: 'navy'
         },
         graphene: {
             path: 'graphene.html',
@@ -323,82 +328,59 @@
     }
 
     /* Menu Toggle */
-    $('.toggle-wrapper').each(function() {
-        var $this       = $(this),
-            toggle      = $this.children('.menu-toggle'),
-            cover       = $('#cover'),
-            winHeight   = $(win).height();
+    $('.main-nav').each(function () {
+        var $this = $(this),
+            cover = $('#cover'),
+            winHeight = $(win).height(),
+            toggleWrapper = $this.find('.toggle-wrapper'),
+            toggle = toggleWrapper.children('.menu-toggle');
 
-        toggle
+        $this
             .on('mouseenter', function() {
-                $(this).addClass('hovered');
+                toggle.addClass('hovered');
 
                 if ( $(win).scrollTop() > winHeight / 2 ) {
                     cover.addClass('zi-1').find('#main-title').removeClass('fade-out').addClass('fade-in');
                 }
             })
-            .on('mouseleave', function() {
-                $(this).removeClass('hovered');
+            .on('mouseleave', function () {
+                toggle.removeClass('hovered');
 
-                if ( $(win).scrollTop() > winHeight / 2 && ! $(this).hasClass('clicked')) {
+                if ( $(win).scrollTop() > winHeight / 2 && ! toggle.hasClass('clicked')) {
                     cover.removeClass('zi-1').find('#main-title').removeClass('fade-in').addClass('fade-out');
                 }
-            });
-            /*.on('click tap', function(e) {
-                e.preventDefault();
+            })
+            .on('click tap', function (ev) {
+                ev.preventDefault();
 
-                if ( ! $(this).hasClass('clicked') ) {
-                    $('.main-nav').addClass('menu-opened').find('.menu-bg').addClass('centerSlideIn');
-                    $(this).addClass('clicked');
+                if ( ! $this.hasClass('menu-opened') ) {
+                    $this.addClass('menu-opened').find('.menu-bg').addClass('centerSlideIn');
+                    toggle.addClass('clicked');
 
                     if ( $(win).scrollTop() > winHeight / 2 ) {
                         cover.addClass('zi-1').find('#main-title').removeClass('fade-out').addClass('fade-in');
                     }
                 } else {
-                    $('.main-nav').removeClass('menu-opened').find('.menu-bg').removeClass('centerSlideIn');
-                    $(this).removeClass('clicked');
+                    $this.removeClass('menu-opened').find('.menu-bg').removeClass('centerSlideIn');
+                    toggle.removeClass('clicked');
 
                     if ( $(win).scrollTop() > winHeight / 2 ) {
                         cover.removeClass('zi-1').find('#main-title').removeClass('fade-in').addClass('fade-out');
                     }
                 }
-            });*/
-    });
-
-    $('.main-nav').on('click', function (e) {
-        var toggleWrapper   = $('.toggle-wrapper'),
-            toggle          = $('.menu-toggle'),
-            cover           = $('#cover'),
-            winHeight       = $(win).height();
-
-        e.preventDefault();
-
-        if ( ! toggle.hasClass('clicked') ) {
-            $(this).addClass('menu-opened').find('.menu-bg').addClass('centerSlideIn');
-            toggle.addClass('clicked');
-
-            if ( $(win).scrollTop() > winHeight / 2 ) {
-                cover.addClass('zi-1').find('#main-title').removeClass('fade-out').addClass('fade-in');
-            }
-        } else {
-            $(this).removeClass('menu-opened').find('.menu-bg').removeClass('centerSlideIn');
-            toggle.removeClass('clicked');
-
-            if ( $(win).scrollTop() > winHeight / 2 ) {
-                cover.removeClass('zi-1').find('#main-title').removeClass('fade-in').addClass('fade-out');
-            }
-        }
+            });
     });
 
     /* Window Scroll Function */
     $(win).scroll(function() {
         var cover       = $('#cover'),
+            mainNav     = $('.main-nav'),
             docHeight   = $(doc).height(),
             winHeight   = $(win).height(),
             scrollPos   = winHeight + $(win).scrollTop(),
             indicator   = closestSection($(win).scrollTop());
 
-        if($(win).scrollTop() > winHeight / 2) {
+        if( ( $(win).scrollTop() > winHeight / 2 ) && ( ! mainNav.hasClass('menu-opened') ) ) {
             $('#cover').removeClass('zi-1').find('.cover-title').removeClass('fade-in').addClass('fade-out');
         }
         else if($(win).scrollTop() < winHeight / 2) {
